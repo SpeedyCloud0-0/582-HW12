@@ -54,4 +54,4 @@ class TXO:
             tx_obj = TXO(tx_hash=self.tx_hash, n=i, amount=output['value'] * pow(10, 8),
                          owner=output['scriptPubKey']['addresses'][0], time=datetime.fromtimestamp(tx['time']))
             self.inputs.append(tx_obj)
-            print("i: " + i)
+            print(i)
