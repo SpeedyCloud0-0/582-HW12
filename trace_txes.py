@@ -50,7 +50,7 @@ class TXO:
         if length == 0:
             return
         for i in range(min(d, length)):
-            output = tx['vout'][i]
+            output = tx['vout'][0]
             tx_obj = TXO(tx_hash=self.tx_hash, n=i, amount=output['value'] * pow(10, 8),
                          owner=output['scriptPubKey']['addresses'][0], time=datetime.fromtimestamp(tx['time']))
             self.inputs.append(tx_obj)
