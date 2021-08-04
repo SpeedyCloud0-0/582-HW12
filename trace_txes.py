@@ -46,12 +46,9 @@ class TXO:
 
     def get_inputs(self, d=1):
         tx = rpc_connection.getrawtransaction(self.tx_hash, True)
-        length = len(tx['vout'])
-        if length == 0:
-            return
-        for i in range(min(d, length)):
-            output = tx['vout'][i]
-            # tx_obj = TXO(tx_hash=self.tx_hash, n=i, amount=output['value'] * pow(10, 8),
-            #              owner=output['scriptPubKey']['addresses'][0], time=datetime.fromtimestamp(tx['time']))
-            # self.inputs.append(tx_obj)
-            print(i)
+        for j in range(d, 0):
+            for i in range(len(tx['vin'])):
+                tx_id = tx['vin']['txid']
+                tx_obj = self.from_tx_hash(tx_id, i)
+                self.get_inputs(tx_obj, j)
+                self.inputs.append(tx_obj)
