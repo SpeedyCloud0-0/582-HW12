@@ -45,7 +45,7 @@ class TXO:
         return tx_obj
 
     def get_inputs(self, d=1):
-        for i in range(d):
+        for i in range(d+1):
             tx = rpc_connection.getrawtransaction(self.tx_hash, True)
             output = tx['vout'][i]
             tx_obj = TXO(tx_hash=self.tx_hash, n=i, amount=output['value'] * pow(10, 8),
