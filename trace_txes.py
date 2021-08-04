@@ -39,15 +39,15 @@ class TXO:
     @classmethod
     def from_tx_hash(cls, tx_hash, n=0):
         tx = rpc_connection.getrawtransaction(tx_hash, True)
-        tx_n = tx[n]
-        tx_obj = TXO(tx_hash=tx_hash, n=n, amount=tx_n['vout']['value'] * 10 ^ 8,
-                     owner=tx_n['vout']['addresses']['address'], time=datetime.fromtimestamp(tx_n['time']))
+        output = tx['vout'][n]
+        tx_obj = TXO(tx_hash=tx_hash, n=n, amount=output['value'] * 10 ^ 8,
+                     owner=output['addresses']['address'], time=datetime.fromtimestamp(tx['time']))
         return tx_obj
 
     def get_inputs(self, d=1):
         for i in range(d):
             tx = rpc_connection.getrawtransaction(self.tx_hash, True)
-            tx_n = tx[i]
-            tx_obj = TXO(tx_hash=self.tx_hash, n=n, amount=tx_n['vout']['value'] * 10 ^ 8,
-                         owner=tx_n['vout']['addresses']['address'], time=datetime.fromtimestamp(tx_n['time']))
+            output = tx['vout'][i]
+            tx_obj = TXO(tx_hash=self.tx_hash, n=i, amount=output['value'] * 10 ^ 8,
+                         owner=output['addresses']['address'], time=datetime.fromtimestamp(tx['time']))
             self.inputs.append(tx_obj)
