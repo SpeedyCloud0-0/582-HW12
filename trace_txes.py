@@ -49,7 +49,7 @@ class TXO:
         length = len(tx['vout'])
         print(d)
         print(length)
-        for i in range(max(d, length)):
+        for i in range(min(d, length)):
             output = tx['vout'][i]
             tx_obj = TXO(tx_hash=self.tx_hash, n=i, amount=output['value'] * pow(10, 8),
                          owner=output['scriptPubKey']['addresses'][0], time=datetime.fromtimestamp(tx['time']))
