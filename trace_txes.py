@@ -40,7 +40,7 @@ class TXO:
     def from_tx_hash(cls, tx_hash, n=0):
         tx = rpc_connection.getrawtransaction(tx_hash, True)
         output = tx['vout'][n]
-        tx_obj = TXO(tx_hash=tx_hash, n=n, amount=output['value'] * 10 ^ 8,
+        tx_obj = TXO(tx_hash=tx_hash, n=n, amount=output['value'] * pow(10, 8),
                      owner=output['addresses']['address'], time=datetime.fromtimestamp(tx['time']))
         return tx_obj
 
