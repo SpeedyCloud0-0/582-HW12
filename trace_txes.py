@@ -48,6 +48,6 @@ class TXO:
         for i in range(d):
             tx = rpc_connection.getrawtransaction(self.tx_hash, True)
             output = tx['vout'][i]
-            tx_obj = TXO(tx_hash=self.tx_hash, n=i, amount=output['value'] * 10 ^ 8,
+            tx_obj = TXO(tx_hash=self.tx_hash, n=i, amount=output['value'] * pow(10, 8),
                          owner=output['addresses']['address'], time=datetime.fromtimestamp(tx['time']))
             self.inputs.append(tx_obj)
