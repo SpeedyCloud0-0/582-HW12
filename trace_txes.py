@@ -49,7 +49,7 @@ class TXO:
         for j in range(d-1, 0, -1):
             print(j)
             for i in range(len(tx['vin'])):
-                tx_id = int(tx['vin'][i]['txid'], 16)
+                tx_id = tx['vin'][i]['txid']
                 tx_obj = self.from_tx_hash(tx_id, i)
                 self.get_inputs(tx_obj, j)
                 self.inputs.append(tx_obj)
