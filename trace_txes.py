@@ -50,7 +50,7 @@ class TXO:
             print(d)
             for i in range(len(tx['vin'])):
                 tx_id = tx['vin'][i]['txid']
-                n = tx['vin'][i]['n']
+                n = tx['vin'][i]['vout']
                 tx_obj = self.from_tx_hash(tx_id, n)
                 tx_obj.get_inputs(d - 1)
                 self.inputs.append(tx_obj)
