@@ -51,5 +51,5 @@ class TXO:
             for i in range(len(tx['vin'])):
                 tx_id = tx['vin'][i]['txid']
                 tx_obj = self.from_tx_hash(tx_id, i)
-                tx_obj.get_inputs(self, j)
+                tx_obj.get_inputs(j)
                 self.inputs.append(tx_obj)
