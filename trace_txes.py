@@ -48,7 +48,7 @@ class TXO:
         tx = rpc_connection.getrawtransaction(self.tx_hash, True)
         for j in range(d-1, 0, -1):
             for i in range(len(tx['vin'])):
-                tx_id = tx['vin']['txid']
+                tx_id = int(tx['vin']['txid'], 16)
                 tx_obj = self.from_tx_hash(tx_id, i)
                 self.get_inputs(tx_obj, j)
                 self.inputs.append(tx_obj)
