@@ -47,7 +47,6 @@ class TXO:
     def get_inputs(self, d=1):
         tx = rpc_connection.getrawtransaction(self.tx_hash, True)
         if d > 0:
-            print(d)
             for i in range(len(tx['vin'])):
                 tx_id = tx['vin'][i]['txid']
                 n = tx['vin'][i]['vout']
